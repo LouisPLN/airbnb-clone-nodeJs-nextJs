@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "fdp": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "jest --watch",
+    "cypress": "cypress open",
     "lint": "next lint"
   },
   "dependencies": {
@@ -21,5 +23,12 @@
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.2.0",
+    "cypress": "^10.1.0",
+    "jest": "^28.1.1",
+    "jest-environment-jsdom": "^28.1.1"
   }
 }
