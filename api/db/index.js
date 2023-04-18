@@ -1,13 +1,18 @@
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("database.sqlite");
+const db = new sqlite3.Database("database_blog.sqlite");
 
 db.serialize(() => {
   db.run(
-    "CREATE TABLE IF NOT EXISTS product (pid INTEGER PRIMARY KEY AUTOINCREMENT, product_url TEXT, product_name TEXT, product_img TEXT, product_desc TEXT, product_price NUMBER)"
+    "CREATE TABLE IF NOT EXISTS articles ( id INTEGER PRIMARY KEY AUTOINCREMENT, article_title TEXT NOT NULL, article_content TEXT NOT NULL, article_author TEXT NOT NULL, article_publish_date DATETIME NOT NULL, article_category TEXT NOT NULL, article_image TEXT, article_status TEXT NOT NULL CHECK (article_status IN ('draft', 'published', 'archived')) );"
+  );
+
+  db.run(
+    "CREATE TABLE IF NOT EXISTS commentaires ( id INTEGER PRIMARY KEY AUTOINCREMENT, commentaire_author TEXT NOT NULL, commentaire_content TEXT NOT NULL, commentaire_publish_date DATETIME NOT NULL, article_id INTEGER NOT NULL, FOREIGN KEY(article_id) REFERENCES articles(id))"
   );
 });
+
 /*
- * Dtabase Functions
+ * Database Functions
  */
 
 /**
@@ -95,6 +100,25 @@ exports.updateById = async (table, columns, values, id) => {
       throw new Error(err.message);
     }
     console.log("Row was added to the table");
+  });
+};
+
+/**
+ * Get elements by id
+ * @param {string} table table name
+ * @param {number} id
+ * @returns
+ */
+exports.getByArticleId = async (table, id) => {
+  return await new Promise((resolve, reject) => {
+    return db.all(
+      `SELECT * FROM ${table} WHERE article_id= ? `,
+      id,
+      (err, rows) => {
+        if (err) reject(err);
+        resolve(rows);
+      }
+    );
   });
 };
 

@@ -1,47 +1,27 @@
 const express = require("express");
 const app = express();
-const port = 3030;
+const port = 6666;
 const creator = "Louis";
-const { insertDb, getAllDb } = require("./db");
+const {
+  getAllArticles,
+  createArticle,
+  getArticleById,
+  updateArticleById,
+  deleteArticleById,
+} = require("./controller/articles");
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.post("/api/article", createArticle);
 
-app.post("/api/product", (req, res) => {
-  console.log(req.body);
-  const {
-    product_url,
-    product_name,
-    product_img,
-    product_desc,
-    product_price,
-  } = req.body;
-  try {
-    insertDb(
-      "product",
-      "product_url, product_name, product_img, product_desc, product_price",
-      [product_url, product_name, product_img, product_desc, product_price]
-    );
-    res.send("Product added");
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(406);
-  }
-});
+app.get("/api/articles", getAllArticles);
 
-app.get("/api/product", async (req, res) => {
-  try {
-    const products = await getAllDb("product");
-    res.send(products);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(406);
-  }
-});
+app.get("/api/article/:id", getArticleById);
+
+app.put("/api/edit/article/:id", updateArticleById);
+
+app.delete("/api/delete/article/:id", deleteArticleById);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port} by ${creator}!`);
+  console.log(`Blog app listening on port ${port} by ${creator}!`);
 });
