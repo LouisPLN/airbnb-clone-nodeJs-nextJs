@@ -2,26 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "Inter";
+  src: local("Inter-Regular"),
+    url(../assets/font/Inter-Regular.ttf) format("truetype");
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+#container {
+  min-height: 100dvh;
+  width: 100%;
+  z-index: -999;
+  position: relative;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+#background {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100dvh;
+  background-image: url(../assets/background.svg);
+  background-repeat: repeat;
+  background-attachment: scroll;
+}
+
+.blog-container {
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
 }
