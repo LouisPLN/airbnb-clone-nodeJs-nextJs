@@ -41,7 +41,7 @@ const createArticle = (req, res) => {
 const getAllArticles = async (req, res) => {
   try {
     const articles = await getAllDb("articles");
-    res.send(articles);
+    res.json(articles);
   } catch (error) {
     console.log(error);
     res.sendStatus(406);

@@ -10,6 +10,14 @@ export default function Document() {
         href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css"
       />
       <body>
+        <div id="up"></div>
+        <a
+          href="#up"
+          className="btn btn-neutral fixed bottom-4 right-4 h-[3rem]
+          w-[3rem] text-white rounded-full z-50"
+        >
+          👆
+        </a>
         <Main />
         <NextScript />
       </body>
