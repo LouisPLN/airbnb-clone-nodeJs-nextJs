@@ -4,7 +4,7 @@ const ContentArticle = ({ article }: { article: ArticleType }) => {
   return (
     <article className="text-justify w-full">
       <h1 className="mb-6 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-        Titre de l'article
+        {article.article_title}
       </h1>
       <div
         className="mb-8 leading-tight"

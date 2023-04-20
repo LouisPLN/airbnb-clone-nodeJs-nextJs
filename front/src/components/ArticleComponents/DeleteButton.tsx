@@ -13,8 +13,9 @@ const DeleteButton = ({ articleId }: { articleId: number }) => {
     <button
       className="btn btn-sm btn-error text-white text-xs"
       onClick={handleDeleteArticle}
+      title="Supprimer l'article"
     >
-      🗑️ Supprimer l'article
+      🗑️
     </button>
   );
 };

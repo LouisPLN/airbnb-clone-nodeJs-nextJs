@@ -10,9 +10,8 @@ const CardArticles = ({ article }: { article: ArticleType }) => {
       >
         <img
           className="w-full h-36 object-cover"
-          src="https://images.pexels.com/photos/848573/pexels-photo-848573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          // {article.article_image}
-          alt="Sunset in the mountains"
+          src={article.article_image}
+          alt={article.article_image}
         />
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-4">{article.article_title}</div>
