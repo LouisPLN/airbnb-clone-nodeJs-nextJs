@@ -3,7 +3,7 @@ const db = new sqlite3.Database("database_blog.sqlite");
 
 db.serialize(() => {
   db.run(
-    "CREATE TABLE IF NOT EXISTS articles ( id INTEGER PRIMARY KEY AUTOINCREMENT, article_title TEXT NOT NULL, article_content TEXT NOT NULL, article_author TEXT NOT NULL, article_publish_date DATETIME NOT NULL, article_category TEXT NOT NULL, article_image TEXT, article_status TEXT NOT NULL CHECK (article_status IN ('draft', 'published', 'archived')) );"
+    "CREATE TABLE IF NOT EXISTS articles ( id INTEGER PRIMARY KEY AUTOINCREMENT, article_title TEXT NOT NULL, article_content TEXT NOT NULL, article_author TEXT NOT NULL, article_publish_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, article_category TEXT NOT NULL, article_image TEXT );"
   );
 
   db.run(

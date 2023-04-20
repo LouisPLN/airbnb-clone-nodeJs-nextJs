@@ -4,14 +4,20 @@ const Navigation = () => {
   return (
     <nav>
       <ul id="customNav">
-        <li className="text-primary hover:text-primary">
-          <a href="/blog">📰 Blog</a>
+        <li>
+          <a href="/blog" className="hover:text-primary">
+            📰 Blog
+          </a>
         </li>
-        <li className="hover:text-primary">
-          <a href="#">🖌️ Rédiger un article</a>
+        <li>
+          <a href="/blog/article/new" className="hover:text-primary">
+            🖌️ Rédiger un article
+          </a>
         </li>
-        <li className="hover:text-primary">
-          <a href="#">☎️ Contact</a>
+        <li>
+          <a href="#" className="hover:text-primary">
+            ☎️ Contact
+          </a>
         </li>
       </ul>
     </nav>

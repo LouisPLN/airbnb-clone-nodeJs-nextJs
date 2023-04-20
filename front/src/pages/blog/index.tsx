@@ -16,20 +16,28 @@ export default function Index() {
     fetchData();
   }, []);
 
-  if (!data) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <div className="app-container">
-        <Navigation />
-        <div className="blog-container">
+  return (
+    <div className="app-container">
+      <Navigation />
+      <div className="blog-container">
+        {!data || data.length === 0 ? (
+          <div>
+            Il n'existe aucun article sur le blog{" "}
+            <a
+              href="/blog/article/new"
+              className="text-primary hover:underline"
+            >
+              créez en un !
+            </a>
+          </div>
+        ) : (
           <div className="flex flex-wrap justify-center gap-6">
             {data.map((article: ArticleType) => (
               <CardArticles article={article} key={article.id} />
             ))}
           </div>
-        </div>
+        )}
       </div>
-    );
-  }
+    </div>
+  );
 }

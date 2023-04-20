@@ -11,24 +11,20 @@ const createArticle = (req, res) => {
     article_title,
     article_content,
     article_author,
-    article_publish_date,
     article_category,
     article_image,
-    article_status,
   } = req.body;
 
   try {
     insertDb(
       "articles",
-      "article_title, article_content, article_author, article_publish_date, article_category, article_image, article_status",
+      "article_title, article_content, article_author, article_category, article_image",
       [
         article_title,
         article_content,
         article_author,
-        article_publish_date,
         article_category,
         article_image,
-        article_status,
       ]
     );
     res.send("Article has been added to the database succesfuly!");
@@ -69,7 +65,6 @@ const updateArticleById = async (req, res) => {
       article_publish_date,
       article_category,
       article_image,
-      article_status,
     } = req.body;
     updateById(
       "articles",
@@ -80,7 +75,6 @@ const updateArticleById = async (req, res) => {
         "article_publish_date",
         "article_category",
         "article_image",
-        "article_status",
       ],
       [
         article_title,
@@ -89,7 +83,6 @@ const updateArticleById = async (req, res) => {
         article_publish_date,
         article_category,
         article_image,
-        article_status,
       ],
       id
     );

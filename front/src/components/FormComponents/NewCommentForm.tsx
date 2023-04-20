@@ -19,7 +19,9 @@ const FormComment = () => {
           ></textarea>
         </div>
         <div className="flex justify-end items-center">
-          <button className="btn btn-primary">Envoyer le commentaire</button>
+          <button className="btn btn-primary text-white">
+            Envoyer le commentaire
+          </button>
         </div>
       </form>
     </div>

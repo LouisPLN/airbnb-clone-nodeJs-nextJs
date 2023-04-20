@@ -1,13 +1,15 @@
 import AuthorArticle from "@/components/ArticleComponents/Author";
 import ContentArticle from "@/components/ArticleComponents/Content";
 import CategoryArticle from "@/components/ArticleComponents/Category";
-import FormComment from "@/components/CommentComponents/Form";
+import FormComment from "@/components/FormComponents/NewCommentForm";
 import ResponseComment from "@/components/CommentComponents/Response";
 import Navigation from "@/navigation";
 import { useEffect, useState } from "react";
 import { fetchArticleById } from "@/services/getArticleById";
 import { useRouter } from "next/router";
 import ArticleType from "@/types/ArticleType";
+import DeleteButton from "@/components/ArticleComponents/DeleteButton";
+import EditButton from "@/components/ArticleComponents/EditButton";
 
 const Article = () => {
   const router = useRouter();
@@ -33,11 +35,16 @@ const Article = () => {
       <div className="app-container">
         <Navigation />
         <main className="blog-container">
+          <div className="absolute top-4 right-4">
+            <EditButton />
+            <DeleteButton articleId={article.id} />
+          </div>
           <AuthorArticle article={article} />
           <CategoryArticle article={article} />
           <ContentArticle article={article} />
-          {/* <FormComment articleId={article.id} />
-          <ResponseComment articleId={article.id} /> */}
+          <FormComment />
+          {/* article={article.id}  */}
+          <ResponseComment />
         </main>
       </div>
     );
