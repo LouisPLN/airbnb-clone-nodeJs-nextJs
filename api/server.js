@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
-const port = 6666;
+const port = 8000;
 const creator = "Louis";
+var cors = require("cors");
 const {
   getAllArticles,
   createArticle,
@@ -9,6 +10,8 @@ const {
   updateArticleById,
   deleteArticleById,
 } = require("./controller/articles");
+
+app.use(cors());
 
 app.use(express.json());
 
