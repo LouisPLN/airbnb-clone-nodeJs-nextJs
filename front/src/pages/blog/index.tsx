@@ -1,7 +1,7 @@
 import CardArticles from "@/components/ArticleComponents/CardArticles";
 import Navigation from "@/navigation";
 import { useEffect, useState } from "react";
-import { fetchApiData } from "@/services/getAllArticles";
+import { fetchAllArticles } from "@/services/getAllArticles";
 import ArticleType from "@/types/ArticleType";
 
 export default function Index() {
@@ -9,14 +9,12 @@ export default function Index() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiData = await fetchApiData();
+      const apiData = await fetchAllArticles();
       setData(apiData);
     };
 
     fetchData();
   }, []);
-
-  console.log(data);
 
   if (!data) {
     return <div>Loading...</div>;

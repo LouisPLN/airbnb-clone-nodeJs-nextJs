@@ -5,12 +5,13 @@ const CardArticles = ({ article }: { article: ArticleType }) => {
   return (
     <>
       <a
-        href="/blog/article"
+        href={`/blog/article/${article.id}`}
         className="max-w-[300px] min-w-[300px] rounded-xl overflow-hidden shadow"
       >
         <img
           className="w-full h-36 object-cover"
           src="https://images.pexels.com/photos/848573/pexels-photo-848573.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          // {article.article_image}
           alt="Sunset in the mountains"
         />
         <div className="px-6 py-4">
@@ -21,13 +22,13 @@ const CardArticles = ({ article }: { article: ArticleType }) => {
           <p className=" mt-2 text-sm font-light text-gray-500 dark:text-gray-400 dark:text-gray-400">
             <time>
               Mis en ligne le{" "}
-              {new Date(article.article_publish_date).toDateString()}
+              {new Date(article.article_publish_date).toLocaleDateString()}
             </time>
           </p>
         </div>
         <hr />
         <div className="px-6 pt-4">
-          <Category>{article.article_category}</Category>
+          <Category article={article} />
         </div>
       </a>
     </>
