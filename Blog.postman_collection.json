@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "bca6b104-d58d-451c-b48c-f83d144e0265",
+		"name": "Blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PostArticleBlog",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"article_title\" : \"Article numéro 3\",\r\n    \"article_content\" : \"Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam odio consectetur expedita, quos, eligendi, veritatis sit mollitia non molestiae in necessitatibus? Magnam repellat, cumque eaque quia nihil distinctio deserunt saepe laudantium ab ex sunt harum atque quam doloribus quae voluptatum odio provident! Delectus, numquam porro? Architecto, error rerum! Quisquam ut reprehenderit asperiores quae odio rem dolor veniam aliquid deserunt consequatur libero dolore blanditiis, doloremque enim nulla, tempora expedita tempore natus cum ab quia! Deserunt dolore iusto rem. Id ab optio pariatur. Corrupti voluptatum laudantium iste nulla, distinctio eum qui similique vitae optio eveniet, vel fugit. Minus, in. Reprehenderit, excepturi debitis.\",\r\n    \"article_author\": \"Louis Braga\",\r\n    \"article_category\": \"Categorie\",\r\n    \"article_image\": \"https://www.example.com/image.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/article",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetArticleBlog",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/articles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetArticleById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/article/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArticleById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"article_title\" : \"Titre de l'article 999\",\r\n    \"article_content\" : \"Contenu de l'article\",\r\n    \"article_author\": \"Louis Poulin\",\r\n    \"article_publish_date\": \"2023-04-18T14:30:00.000Z\",\r\n    \"article_category\": \"Dev\",\r\n    \"article_image\": \"Url de l'image\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/edit/article/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"edit",
+						"article",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteArticleById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/delete/article/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"delete",
+						"article",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
