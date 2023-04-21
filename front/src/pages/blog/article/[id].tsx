@@ -34,17 +34,19 @@ const Article = () => {
     return (
       <div className="app-container">
         <Navigation />
-        <main className="blog-container">
-          <div className="absolute top-4 right-4">
-            <EditButton />
-            <DeleteButton articleId={article.id} />
+        <main className="blog-container relative">
+          <div className="flex justify-between items-start w-full">
+            <AuthorArticle article={article} />
+            <div className="flex">
+              <EditButton articleId={article.id} />
+              <DeleteButton articleId={article.id} />
+            </div>
           </div>
-          <AuthorArticle article={article} />
           <CategoryArticle article={article} />
           <ContentArticle article={article} />
-          <FormComment />
+          {/* <FormComment />
           {/* article={article.id}  */}
-          <ResponseComment />
+          {/* <ResponseComment />  */}
         </main>
       </div>
     );
