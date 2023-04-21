@@ -14,11 +14,6 @@ const Navigation = () => {
             🖌️ Rédiger un article
           </a>
         </li>
-        <li>
-          <a href="#" className="hover:text-primary">
-            ☎️ Contact
-          </a>
-        </li>
       </ul>
     </nav>
   );

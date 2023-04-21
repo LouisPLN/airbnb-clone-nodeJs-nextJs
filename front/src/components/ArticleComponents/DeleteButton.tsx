@@ -11,7 +11,7 @@ const DeleteButton = ({ articleId }: { articleId: number }) => {
 
   return (
     <button
-      className="btn btn-sm btn-error text-white text-xs"
+      className="btn btn-sm btn-outline btn-error text-white text-xs"
       onClick={handleDeleteArticle}
       title="Supprimer l'article"
     >

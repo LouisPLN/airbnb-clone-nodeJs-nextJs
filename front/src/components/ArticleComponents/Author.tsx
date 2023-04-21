@@ -5,7 +5,7 @@ const AuthorArticle = ({ article }: { article: ArticleType }) => {
     <address className="w-full flex justify-start items-center mb-6 not-italic relative">
       <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
         <img
-          className="mr-4 w-16 h-16 rounded-full"
+          className="mr-4 w-16 h-16 rounded-full object-cover"
           src={article.article_image}
           alt={article.article_image}
         />

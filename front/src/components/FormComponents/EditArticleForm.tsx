@@ -1,18 +1,45 @@
-import { useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "react-quill/dist/quill.snow.css";
-import { createArticle } from "@/services/postArticle";
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { fetchArticleById } from "@/services/getArticleById";
+import router, { useRouter } from "next/router";
+import ArticleType from "@/types/ArticleType";
+import { updateArticle } from "@/services/updateArticle";
 
-const NewArticleForm = () => {
+const EditArticleForm = () => {
   const { quill, quillRef } = useQuill();
-  const [content, setContent] = useState("");
   const router = useRouter();
+
+  const { id } = router.query;
+  const [article, setArticle] = useState<ArticleType | null>(null);
+
+  useEffect(() => {
+    const fetchArticle = async () => {
+      const data = await fetchArticleById(id as string);
+      if (data) {
+        setArticle(data[0]);
+      }
+    };
+    fetchArticle();
+  }, [id]);
+
+  // Set the value of the input fields
+
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     if (quill) {
+      quill.clipboard.dangerouslyPasteHTML(article?.article_content || "");
+    }
+  }, [quill, article]);
+
+  useEffect(() => {
+    if (quill) {
+      quill.clipboard.dangerouslyPasteHTML(article?.article_content || "");
+
       quill.on("text-change", (delta, oldDelta, source) => {
         setContent(quill.root.innerHTML);
+        console.log("sah");
       });
     }
   }, [quill]);
@@ -31,10 +58,11 @@ const NewArticleForm = () => {
     }
 
     obj["article_content"] = content;
-    await createArticle(obj);
+    if (id) await updateArticle(id as string, obj);
 
-    router.push("/blog");
+    router.push(`/blog/article/${article?.id}`);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -50,6 +78,7 @@ const NewArticleForm = () => {
             id="article_author"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-secondary dark:focus:border-secondary"
             placeholder="John"
+            defaultValue={article?.article_author || ""}
             required
           />
         </div>
@@ -65,6 +94,7 @@ const NewArticleForm = () => {
             id="article_category"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-secondary dark:focus:border-secondary"
             placeholder="Développement web"
+            defaultValue={article?.article_category || ""}
             required
           />
         </div>
@@ -81,6 +111,7 @@ const NewArticleForm = () => {
           id="article_image"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-secondary dark:focus:border-secondary"
           placeholder="https://www.example.com/image.jpg"
+          defaultValue={article?.article_image || ""}
           required
         />
       </div>
@@ -96,6 +127,7 @@ const NewArticleForm = () => {
           id="article_title"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-secondary focus:border-secondary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-secondary dark:focus:border-secondary"
           placeholder="Développer un blog en Next Js & Node Js"
+          defaultValue={article?.article_title || ""}
           required
         />
       </div>
@@ -105,10 +137,10 @@ const NewArticleForm = () => {
         </div>
       </div>
       <button type="submit" className="btn btn-active btn-primary text-white">
-        Poster l'article
+        Modifier l'article
       </button>
     </form>
   );
 };
 
-export default NewArticleForm;
+export default EditArticleForm;
